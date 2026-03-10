@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react"
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 import { links } from "@/app/lib/constants"
 import { useRef } from "react";
 
@@ -13,22 +13,23 @@ export default function Nav() {
     const navRef = useRef(null)
     
     useGSAP(()=>{
-        const navCtx = gsap.context(()=> {
-            const navTl = gsap.timeline({
-                scrollTrigger: {
-                    scrub: 1,
-                    start: "top top",
-                    end: "+=200vh"
-                }
+        
+        const navTl = gsap.timeline({
+            scrollTrigger: {
+                scrub: 1,
+                start: "top top",
+                end: "+=200vh"
+            }
+        })
+
+        navTl.
+            to(navRef.current, {
+                y: 100
             })
 
-            navTl.
-                to(navRef.current, {
-                    
-                })
-
-        }, navRef)
-    }, [])    
+    }, {
+        scope: navRef
+    })    
     
     return (
         <nav className="navbar" ref={navRef}>
