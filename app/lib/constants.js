@@ -9,4 +9,10 @@ const links = [
     }
 ]
 
-export { links };
+import {Visibility} from "./icons.js";
+
+const ICONS = {
+    VIEW: Visibility
+}
+
+export { links, ICONS };

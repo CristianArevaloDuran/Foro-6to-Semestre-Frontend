@@ -10,7 +10,7 @@
 body {
   margin: 0;
   padding: 0;
-  height: 300vh
+  height: 100dvh
 }
 
 @layer components {
@@ -20,5 +20,11 @@ body {
     ul {
       @apply flex flex-row gap-2; 
     }
+  }
+
+  #login {
+    @apply w-full h-full pt-10 flex justify-center items-center;
+
+    
   }
 }
