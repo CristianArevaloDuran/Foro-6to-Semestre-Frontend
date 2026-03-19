@@ -1,0 +1,48 @@
+trigger:
+  - main
+
+pool:
+  name: 'Default'  # Usando tu agente local
+
+variables:
+  node_version: '20.x'
+  # Next.js a veces necesita estas variables en tiempo de COMPILACIÓN (Build)
+  NEXT_PUBLIC_API_URL: $(NEXT_PUBLIC_API_URL) 
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: $(node_version)
+  displayName: 'Instalar Node.js'
+
+- script: |
+    npm install
+  displayName: 'Instalar dependencias (npm install)'
+
+- script: |
+    npm run build
+  displayName: 'Compilar Next.js (npm run build)'
+  env:
+    NEXT_PUBLIC_API_URL: $(NEXT_PUBLIC_API_URL)
+    # Añade aquí otras variables NEXT_PUBLIC_ si las usas
+
+# Limpiamos node_modules de desarrollo para que el ZIP sea ligero
+- script: |
+    npm prune --production
+  displayName: 'Eliminar dependencias de desarrollo'
+
+- task: ArchiveFiles@2
+  displayName: 'Empaquetar Frontend'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publicar Artefacto Frontend'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'frontend-drop'
+    publishLocation: 'Container'
