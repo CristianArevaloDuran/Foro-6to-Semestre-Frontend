@@ -1,3 +1,4 @@
+import AnimatedBG from "../components/AnimatedBG/AnimatedBG";
 import LoginForm from "./LoginForm"
 
 export const metadata = {
@@ -10,6 +11,7 @@ export default function Login() {
     return (
         <div id="login">
             <LoginForm API_URL={API_URL} />
+            <AnimatedBG />
         </div>
     )
 }

@@ -6,13 +6,21 @@ const links = [
     {
         name: "Login",
         link: "/login"
+    },
+    {
+        name: "Registro",
+        link: "/register"
     }
 ]
 
-import {Visibility} from "./icons.js";
+import {Email, UserId, Id, Visibility, VisibilityOff} from "./icons.js";
 
 const ICONS = {
-    VIEW: Visibility
+    VIEW: Visibility,
+    EMAIL: Email,
+    VIEWOFF: VisibilityOff,
+    ID: Id,
+    USERID: UserId
 }
 
 export { links, ICONS };

@@ -1,7 +1,7 @@
 'use client';
 
 import Cookies from "js-cookie";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {ICONS} from '../lib/constants.js';
 
 export default function LoginForm({API_URL}) {
@@ -41,20 +41,49 @@ export default function LoginForm({API_URL}) {
         
     }
 
+    const [visiblePass, setVisiblePass] = useState(false);
+    const [type, setType] = useState('password')
+    const [placeholder, setPlaceholder] = useState('******');
+
+    const showPass = () => {
+        if(visiblePass) {
+            setVisiblePass(false);
+            setType('password');
+            setPlaceholder('******');
+        } else {
+            setVisiblePass(true);
+            setType('text');
+            setPlaceholder('abc123');
+        }
+    }
+
     return (
-        <form onSubmit={(e)=>login(e)}>
+        <form className="form-card" onSubmit={(e)=>login(e)}>
+            <div className="form-header">
+                <h1>Bienvenido</h1>
+                <p>Inicia sesion para continuar en Knotic.</p>
+            </div>
             <div className="input-container">
                 <label htmlFor="email">Email</label>
-                <input id="email" ref={emailRef} type="email" placeholder="example@email.com" />
+                <div className="input-wrapper">
+                    <input id="email" ref={emailRef} type="email" placeholder="example@email.com" required />
+                    <div className="icon">
+                        <ICONS.EMAIL />
+                    </div>
+                </div>
             </div>
             <div className="input-container">
                 <label htmlFor="password">Password</label>
-                <div>
-                    <input id="password" ref={passRef} type="password" />
-                    <ICONS.VIEW />
+                <div className="input-wrapper">
+                    <input id="password" ref={passRef} type={type} required placeholder={placeholder} />
+                    <div className="icon pass-icon" onClick={showPass}>
+                        {
+                            visiblePass ? <ICONS.VIEWOFF /> : <ICONS.VIEW />
+                        }
+                    </div>
                 </div>
             </div>
-            <input type="submit" value='Login' />
+            <button type="submit">Entrar</button>
         </form>
     )
 }

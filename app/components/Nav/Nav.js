@@ -24,7 +24,9 @@ export default function Nav() {
 
         navTl.
             to(navRef.current, {
-                y: 100
+                width: '90%',
+                borderBottomLeftRadius: 20,
+                borderBottomRightRadius: 20
             })
 
     }, {
