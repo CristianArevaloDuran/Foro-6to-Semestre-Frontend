@@ -13,14 +13,18 @@ const links = [
     }
 ]
 
-import {Email, UserId, Id, Visibility, VisibilityOff} from "./icons.js";
+import {Email, UserId, Id, Visibility, VisibilityOff, CloseX, SuccessStar, ErrorStar, Loading} from "./icons.js";
 
 const ICONS = {
     VIEW: Visibility,
     EMAIL: Email,
     VIEWOFF: VisibilityOff,
     ID: Id,
-    USERID: UserId
+    USERID: UserId,
+    CLOSEX: CloseX,
+    SUCCESSSTAR: SuccessStar,
+    ERRORSTAR: ErrorStar,
+    LOADING: Loading
 }
 
 export { links, ICONS };

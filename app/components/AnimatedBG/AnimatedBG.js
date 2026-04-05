@@ -27,7 +27,7 @@ export default function AnimatedBG() {
                 top: `${randomInRange(seedBase + 1, 0, 100, 1)}%`,
                 left: `${randomInRange(seedBase + 2, 0, 100, 1)}%`,
                 color: `hsl(${randomInRange(seedBase + 3, 40, 160, 0)}, 90%, 60%)`,
-                opacity: randomInRange(seedBase + 4, 0.35, 0.8, 2),
+                opacity: randomInRange(seedBase + 4, 0.8, 1, 2),
             };
         });
     }, []);
@@ -41,8 +41,8 @@ export default function AnimatedBG() {
                 y: gsap.utils.random(-140, 140, 1),
                 rotation: gsap.utils.random(-40, 40, 1),
                 scale: gsap.utils.random(0.7, 1.25, 0.01),
-                duration: gsap.utils.random(6, 16, 0.1),
-                delay: gsap.utils.random(0, 2.5, 0.1),
+                duration: gsap.utils.random(2, 6, 0.1),
+                delay: gsap.utils.random(0, .5, 0.1),
                 ease: 'sine.inOut',
                 yoyo: true,
                 repeat: -1,

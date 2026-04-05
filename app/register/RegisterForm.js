@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ICONS } from "../lib/constants.js";
+import Link from "next/link";
+import AlertBlock from "../components/AlertBlock/AlertBlock.js";
+import AuthButton from "../components/AuthButton/AuthButton.js";
 
 export default function RegisterForm({ API_URL }) {
     const router = useRouter();
@@ -26,10 +29,12 @@ export default function RegisterForm({ API_URL }) {
 
     const register = async (e) => {
         e.preventDefault();
+        setStatus('loading');
 
         if (formData.password !== formData.confirmPassword) {
             setMessage("Las contrasenas no coinciden.");
             setMessageType("error");
+            setStatus('error');
             return;
         }
 
@@ -52,6 +57,7 @@ export default function RegisterForm({ API_URL }) {
             });
 
             if (response.ok) {
+                setStatus('success');
                 setMessage("Cuenta creada correctamente. Redirigiendo al login...");
                 setMessageType("success");
                 setTimeout(() => {
@@ -62,14 +68,19 @@ export default function RegisterForm({ API_URL }) {
 
             setMessage("No se pudo crear la cuenta. Verifica los datos e intenta otra vez.");
             setMessageType("error");
+            setStatus('error');
         } catch (error) {
-            console.error(error);
+            setStatus('error');
             setMessage("Error de red. Intenta nuevamente en unos segundos.");
             setMessageType("error");
         } finally {
             setIsSubmitting(false);
         }
     };
+
+    // Status 
+
+    const [status, setStatus] = useState('idle');
 
     return (
         <form className="form-card" onSubmit={register}>
@@ -175,11 +186,11 @@ export default function RegisterForm({ API_URL }) {
                 </div>
             </div>
 
-            <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Creando..." : "Registrarme"}
-            </button>
+            <AuthButton content={'Crear cuenta'} status={status} />
 
-            {message && <p className={`form-message ${messageType}`}>{message}</p>}
+            <p className="optional-link">¿Tienes cuenta? <br /> <Link href="/login">Inicia sesión</Link></p>
+
+            <AlertBlock message={message} onClose={()=>setMessage('')} open={Boolean(message)} />
         </form>
     );
 }

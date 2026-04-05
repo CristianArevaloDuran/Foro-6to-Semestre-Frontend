@@ -18,7 +18,7 @@ export default function Nav() {
             scrollTrigger: {
                 scrub: 1,
                 start: "top top",
-                end: "+=200vh"
+                end: "+=100vh"
             }
         })
 

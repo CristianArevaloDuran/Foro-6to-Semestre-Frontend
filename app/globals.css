@@ -2,10 +2,27 @@
 
 @theme {
   --nav-height: 84px;
-  --color-background: #f4ffe0;
+  
+  /* Page background colors */
+
+  --color-background: #cfffaf;
   --color-background-blur: #fffad852;
   --color-foreground: #b8ff36;
+
+  /* Background status */
+
+  --color-background-error: #d93636;
+  --color-background-success: #29cae3;
+
+  /* Text colors */
+
+  --text-highlight: #036b01;
+  --text-regular-white: #fff;
+
+  /* Fonts */
+
   --font-doto: "Doto", sans-serif;
+  --font-quicksand: "Quicksand", sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -18,32 +35,37 @@ body {
 
 @layer components {
   nav {
-    @apply flex flex-row justify-self-center w-dvw py-5 px-10 bg-black text-white fixed z-100;
+    @apply flex flex-row justify-self-center w-dvw py-5 px-10 bg-black text-(--text-regular-white) fixed z-100;
 
     ul {
       @apply flex flex-row gap-2; 
+
+      li {
+        a {
+          @apply font-(family-name:--font-doto) font-black;
+        }
+      }
     }
   }
 
   #login,
   #register {
-    @apply w-dvw min-h-dvh flex justify-center items-start relative z-20 pb-8 px-4;
+    @apply w-dvw min-h-dvh flex justify-center items-center relative z-20 pb-8 px-4 overflow-hidden;
     padding-top: calc(var(--nav-height) + 1rem);
   
     .form-card {
       @apply w-full max-w-[520px] bg-(--color-foreground) p-8 md:p-10 flex flex-col gap-2 justify-center items-center z-10;
       box-shadow: 0 0 10px 2px #ddfaa4;
-      max-height: calc(100dvh - var(--nav-height) - 2rem);
       overflow-y: auto;
 
       .form-header {
         @apply flex flex-col justify-center items-center font-(family-name:--font-doto) font-black mb-5;
 
         h1 {
-          @apply text-3xl;
+          @apply text-3xl text-center;
         }
         p {
-          @apply text-xl;
+          @apply text-xl text-center;
         }
       }
 
@@ -54,6 +76,10 @@ body {
 
       .input-container {
         @apply w-full;
+
+        label {
+          @apply font-(family-name:--font-quicksand) font-bold;
+        }
 
         .input-wrapper {
           @apply flex flex-row mt-[5px];
@@ -91,8 +117,12 @@ body {
       }
     }
 
-    button {
-      @apply py-5 px-10 bg-black text-white font-(family-name:--font-doto) font-black cursor-pointer mt-5;
+    .optional-link {
+      @apply flex flex-col justify-center items-center;
+
+      a {
+        @apply text-(--text-highlight) underline;
+      }
     }
 
     .basebg {
@@ -109,6 +139,29 @@ body {
       .blur-layer {
         @apply absolute top-0 left-0 w-full h-full backdrop-blur-xl bg-(--color-background-blur);
       }
+    }
+
+    .alert-block {
+      @apply fixed bg-black p-5 bottom-10 right-15 ;
+      box-shadow: 0 0 10px 2px #ddfaa4; 
+
+      .closing-button {
+        @apply cursor-pointer absolute top-2 right-2;
+
+        svg {
+          @apply fill-white ; 
+        }
+      }
+
+      h1 {
+        @apply font-(family-name:--font-doto) text-(--text-regular-white) font-black ; 
+      }
+
+      p {
+        @apply text-(--text-regular-white);
+      }
+
+
     }
   }
 
