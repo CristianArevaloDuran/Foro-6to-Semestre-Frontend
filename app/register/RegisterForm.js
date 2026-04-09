@@ -17,6 +17,7 @@ export default function RegisterForm({ API_URL }) {
         confirmPassword: ""
     });
     const [message, setMessage] = useState("");
+    const [messageTitle, setMessageTitle] = useState('Error');
     const [messageType, setMessageType] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -38,10 +39,18 @@ export default function RegisterForm({ API_URL }) {
             return;
         }
 
+        if (formData.password.length < 6) {
+            setMessage("La contraseña debe tener un mínimo de 6 caracteres.");
+            setMessageType("error");
+            setStatus('error');
+            return;
+        }
+
         setIsSubmitting(true);
         setMessage("");
 
         const payload = {
+            username: formData.username,
             name: formData.name,
             email: formData.email,
             password: formData.password
@@ -56,17 +65,20 @@ export default function RegisterForm({ API_URL }) {
                 body: JSON.stringify(payload)
             });
 
+            const result = await response.json();
+            
             if (response.ok) {
                 setStatus('success');
-                setMessage("Cuenta creada correctamente. Redirigiendo al login...");
+                setMessage("Cuenta creada correctamente. Ya puedes iniciar sesión.");
                 setMessageType("success");
+                setMessageTitle('Ok');
                 setTimeout(() => {
                     router.push("/login");
                 }, 1000);
                 return;
             }
 
-            setMessage("No se pudo crear la cuenta. Verifica los datos e intenta otra vez.");
+            setMessage(result.message);
             setMessageType("error");
             setStatus('error');
         } catch (error) {
@@ -186,11 +198,26 @@ export default function RegisterForm({ API_URL }) {
                 </div>
             </div>
 
+            <div className="checkbox">
+                <div className="input-wrapper">
+                    <input
+                        id="tyc"
+                        name="tyc"
+                        type="checkbox"
+                        value={formData.checkbox}
+                        onChange={handleChange}
+                        required
+                    />
+                <label htmlFor="tyc">Acepto los terminos y condiciones</label>
+                    
+                </div>
+            </div>
+
             <AuthButton content={'Crear cuenta'} status={status} />
 
             <p className="optional-link">¿Tienes cuenta? <br /> <Link href="/login">Inicia sesión</Link></p>
 
-            <AlertBlock message={message} onClose={()=>setMessage('')} open={Boolean(message)} />
+            <AlertBlock message={message} title={messageTitle} onClose={()=>setMessage('')} open={Boolean(message)} />
         </form>
     );
 }

@@ -41,6 +41,7 @@ export default function LoginForm({API_URL}) {
 
                 setMessage('Sesion iniciada');
                 setStatus('success');
+                setMessageTitle('Ok');
             } else {
                 setMessage('Credenciales inválidas');
                 setStatus('error');
@@ -73,6 +74,7 @@ export default function LoginForm({API_URL}) {
     // Alert Block Handling
 
     const [message, setMessage] = useState('');
+    const [messageTitle, setMessageTitle] = useState('Error');
 
     // Button status
 
@@ -106,7 +108,7 @@ export default function LoginForm({API_URL}) {
             </div>
             <AuthButton content={'Entrar'} status={status} />
             <p className="optional-link">¿No tienes cuenta? <br /> <Link href="/register">Registrate</Link></p>
-            <AlertBlock message={message} onClose={()=>setMessage('')} open={Boolean(message)} />
+            <AlertBlock message={message} title={messageTitle} onClose={()=>setMessage('')} open={Boolean(message)} />
         </form>
     )
 }

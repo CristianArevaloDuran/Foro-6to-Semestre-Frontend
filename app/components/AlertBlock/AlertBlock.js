@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ICONS } from "@/app/lib/constants";
 import gsap from "gsap";
 
-export default function AlertBlock({message, open, onClose}) {
+export default function AlertBlock({title, message, open, onClose}) {
 
     const [isOpen, setIsOpen] = useState(open);
     const [timer, setTimer] = useState(0);
@@ -61,7 +61,7 @@ export default function AlertBlock({message, open, onClose}) {
             <div className="closing-button" onClick={handleClose}>
                 <ICONS.CLOSEX />
             </div>
-            <h1>Error</h1>
+            <h1>{title}</h1>
             <p>{message}</p>
         </div>
     )
