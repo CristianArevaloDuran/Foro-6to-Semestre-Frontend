@@ -11,6 +11,13 @@ const links = [
         name: "Registro",
         link: "/register"
     }
+];
+
+const sessionLinks = [
+    {
+        name: 'Home',
+        link: '/'
+    }
 ]
 
 import {Email, UserId, Id, Visibility, VisibilityOff, CloseX, SuccessStar, ErrorStar, Loading} from "./icons.js";
@@ -27,4 +34,4 @@ const ICONS = {
     LOADING: Loading
 }
 
-export { links, ICONS };
+export { links, sessionLinks, ICONS };

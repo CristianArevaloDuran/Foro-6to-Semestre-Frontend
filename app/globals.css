@@ -35,7 +35,11 @@ body {
 
 @layer components {
   nav {
-    @apply flex flex-row justify-self-center w-dvw py-5 px-10 bg-black text-(--text-regular-white) fixed z-100;
+    @apply flex flex-row justify-self-center justify-between w-dvw py-5 px-10 bg-black text-(--text-regular-white) fixed z-100;
+
+    h1 {
+      @apply font-(family-name:--font-doto) font-black;
+    }
 
     ul {
       @apply flex flex-row gap-2; 
