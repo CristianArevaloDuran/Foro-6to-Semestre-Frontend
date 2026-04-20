@@ -35,20 +35,41 @@ body {
 
 @layer components {
   nav {
-    @apply flex flex-row justify-self-center justify-between w-dvw py-5 px-10 bg-black text-(--text-regular-white) fixed z-100;
+    @apply flex flex-row justify-self-center items-center justify-between w-dvw py-5 px-10 bg-black text-(--text-regular-white) fixed z-100;
 
     h1 {
       @apply font-(family-name:--font-doto) font-black;
     }
 
     ul {
-      @apply flex flex-row gap-2; 
+      @apply flex flex-row gap-2 items-center ; 
 
       li {
         a {
-          @apply font-(family-name:--font-doto) font-black;
+          @apply font-(family-name:--font-doto) font-black cursor-pointer;
         }
       }
+    }
+
+    .nav-user {
+      @apply relative;
+    }
+
+    .nav-user-button {
+      @apply size-10 rounded-full bg-(--color-foreground) text-black font-(family-name:--font-doto) font-black cursor-pointer;
+    }
+
+    .nav-user-content {
+      @apply absolute flex flex-col justify-center items-center top-15 right-0 min-w-[180px] mt-2 bg-black px-2 py-3 rounded-md border border-white/20 z-101 gap-2 ;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-user-item {
+      @apply w-full px-3 py-2 text-(--text-regular-white) rounded cursor-pointer font-(family-name:--font-doto) font-black text-center;
+    }
+
+    .nav-user-item:hover {
+      @apply bg-white/30;
     }
   }
 

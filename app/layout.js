@@ -1,5 +1,6 @@
 import "./globals.css";
 import Nav from "./components/Nav/Nav";
+import { AuthProvider } from "./lib/AuthContext";
 
 export const metadata = {
   title: {
@@ -8,6 +9,8 @@ export const metadata = {
   },
   description: "Foro para estudiantes"
 }
+
+const API_URL = process.env.API_URL;
 
 export default function RootLayout({ children }) {
   return (
@@ -18,8 +21,10 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <Nav />
-        {children}
+        <AuthProvider apiUrl={API_URL}>
+          <Nav />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

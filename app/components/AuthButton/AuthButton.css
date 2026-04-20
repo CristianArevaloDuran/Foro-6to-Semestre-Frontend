@@ -1,7 +1,7 @@
 @reference "../../globals.css";
 
 .auth-button {
-    @apply py-5 px-10 bg-black text-(--text-regular-white) font-(family-name:--font-doto) font-black cursor-pointer mt-5;
+    @apply py-5 px-10 bg-black text-(--text-regular-white) font-(family-name:--font-doto) font-black cursor-pointer mt-5 ;
 }
 
 .auth-button-error {

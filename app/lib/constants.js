@@ -17,6 +17,10 @@ const sessionLinks = [
     {
         name: 'Home',
         link: '/'
+    },
+    {
+        name: 'Forums',
+        link: '/app'
     }
 ]
 
