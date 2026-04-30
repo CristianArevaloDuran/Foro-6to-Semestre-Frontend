@@ -37,7 +37,7 @@ body {
   nav {
     @apply flex flex-row justify-self-center items-center justify-between w-dvw py-5 px-10 bg-black text-(--text-regular-white) fixed z-100;
 
-    h1 {
+    a {
       @apply font-(family-name:--font-doto) font-black;
     }
 
@@ -172,23 +172,64 @@ body {
 
       .closing-button {
         @apply cursor-pointer absolute top-2 right-2;
-
-        svg {
-          @apply fill-white ; 
-        }
       }
-
-      h1 {
-        @apply font-(family-name:--font-doto) text-(--text-regular-white) font-black ; 
-      }
-
-      p {
-        @apply text-(--text-regular-white);
-      }
-
-
     }
   }
 
+  /* User page component styles */
+  .user-container {
+    @apply max-w-[1000px] mx-auto; 
+  }
+
+  .user-header {
+    @apply flex flex-row items-center justify-between gap-4 mb-6;
+  }
+
+  .avatar {
+    @apply w-20 h-20 rounded-full bg-(--color-foreground) text-black flex items-center justify-center text-2xl font-(family-name:--font-doto) font-black;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  }
+
+  .user-info h1 {
+    @apply text-2xl font-(family-name:--font-doto) font-black m-0;
+  }
+
+  .muted {
+    @apply text-sm text-black/60;
+  }
+
+  .user-actions {
+    @apply ml-auto;
+  }
+
+  .logout-button {
+    @apply bg-black text-white px-4 py-2 rounded-md font-(family-name:--font-quicksand) font-bold hover:opacity-90;
+  }
+
+  .user-body {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  .card-title {
+    @apply text-xl font-(family-name:--font-quicksand) font-bold mb-3;
+  }
+
+  .user-card {
+    @apply p-6 rounded-lg shadow-lg border border-black/10;
+    background: var(--color-foreground);
+    color: black;
+  }
+
+  .card-subtitle {
+    @apply text-sm font-(family-name:--font-quicksand) font-bold mt-3 mb-2;
+  }
+
+  .kv-list ul {
+    @apply list-inside list-disc ml-4 mt-2;
+  }
+
+  .kv-list li {
+    @apply text-sm text-black/85 mb-1;
+  }
 
 }

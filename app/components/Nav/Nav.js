@@ -7,7 +7,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import { links, sessionLinks } from "@/app/lib/constants"
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/app/lib/AuthContext";
+import { useAuth } from "@/app/lib/AuthContext.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,7 +73,7 @@ export default function Nav() {
 
     return (
         <nav className="navbar" ref={navRef}>
-            <h1>Knotic</h1>
+            <Link href='/'>Knotic</Link>
             <ul>
                 {navLinks.map((link) => (
                     <li key={link.link}>
@@ -94,7 +94,7 @@ export default function Nav() {
                             </button>
                             {isUserMenuOpen && (
                                 <div className="nav-user-content" role="menu">
-                                    <Link href='/me' className="nav-user-item">
+                                    <Link href={`/app/${user?.user?.user_metadata?.username}`} className="nav-user-item">
                                         {user?.user?.user_metadata?.username}
                                     </Link>
                                     {

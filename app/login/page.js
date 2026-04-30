@@ -1,5 +1,5 @@
 import AnimatedBG from "../components/AnimatedBG/AnimatedBG";
-import LoginForm from "./LoginForm"
+import LoginForm from "./LoginForm.jsx"
 
 export const metadata = {
     title: "Login"

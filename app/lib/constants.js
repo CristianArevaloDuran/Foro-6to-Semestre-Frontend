@@ -1,9 +1,5 @@
 const links = [
     {
-        name: "Home",
-        link: "/"
-    },
-    {
         name: "Login",
         link: "/login"
     },
@@ -14,10 +10,6 @@ const links = [
 ];
 
 const sessionLinks = [
-    {
-        name: 'Home',
-        link: '/'
-    },
     {
         name: 'Forums',
         link: '/app'

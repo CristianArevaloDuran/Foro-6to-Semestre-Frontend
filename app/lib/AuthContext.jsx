@@ -13,7 +13,7 @@ export function AuthProvider({ children, apiUrl }) {
   // Restaurar sesión al montar la app
   useEffect(() => {
     const restoreSession = async () => {
-      const token = Cookies.get('session') || localStorage.getItem('token');
+      const token = Cookies.get('session');
       
       if (!token) {
         setLoading(false);
@@ -50,14 +50,12 @@ export function AuthProvider({ children, apiUrl }) {
   const login = useCallback((userData, token) => {
     setUser(userData);
     Cookies.set('session', token, { secure: true });
-    localStorage.setItem('token', token);
     setError(null);
   }, []);
 
   const logout = useCallback(() => {
     setUser(null);
     Cookies.remove('session');
-    localStorage.removeItem('token');
     setError(null);
   }, []);
 

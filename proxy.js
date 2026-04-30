@@ -10,7 +10,6 @@ export default async function proxy(request) {
     const {pathname} = request.nextUrl;
     
     if(!token) {
-        console.log('hola');
         
         if(pathname.startsWith('/app')) {
             return NextResponse.redirect(new URL('/login', request.url));

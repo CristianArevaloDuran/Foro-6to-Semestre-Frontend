@@ -6,7 +6,7 @@ import Link from "next/link";
 import AlertBlock from "../components/AlertBlock/AlertBlock.js";
 import AuthButton from "../components/AuthButton/AuthButton.js";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../lib/AuthContext";
+import { useAuth } from "../lib/AuthContext.jsx";
 
 export default function LoginForm({API_URL}) {
 
