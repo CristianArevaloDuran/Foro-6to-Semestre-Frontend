@@ -1,6 +1,6 @@
 import "./globals.css";
 import Nav from "./components/Nav/Nav";
-import { AuthProvider } from "./lib/AuthContext.jsx";
+import { AuthProvider } from "./lib/AuthContext.js";
 
 export const metadata = {
   title: {

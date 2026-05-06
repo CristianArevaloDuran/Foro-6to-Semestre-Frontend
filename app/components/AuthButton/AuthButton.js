@@ -1,5 +1,4 @@
 import { ICONS } from '@/app/lib/constants';
-import './AuthButton.css'
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
@@ -25,6 +24,15 @@ export default function AuthButton({status, content}) {
                 { scale: 1 },
                 { scale: 1.04, duration: 0.12, repeat: 1, yoyo: true, ease: "power1.out" }
             );
+        }
+
+        if (status === "loading") {
+            gsap.to('button svg', {
+                rotate: 360,
+                duration: 1,
+                repeat: -1,
+                ease: 'none'
+            })
         }
     }, [status]);
 

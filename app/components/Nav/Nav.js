@@ -7,7 +7,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import { links, sessionLinks } from "@/app/lib/constants"
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/app/lib/AuthContext.jsx";
+import { useAuth } from "@/app/lib/AuthContext.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,8 +59,7 @@ export default function Nav() {
 
         navTl.to(navRef.current, {
             width: '90%',
-            borderBottomLeftRadius: 20,
-            borderBottomRightRadius: 20
+            scale: .9
         })
     }, {
         scope: navRef
