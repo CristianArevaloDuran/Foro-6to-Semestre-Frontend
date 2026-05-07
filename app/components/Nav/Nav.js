@@ -66,9 +66,6 @@ export default function Nav() {
     })
 
     if (loading) return <nav className="navbar" ref={navRef}><h1>Knotic</h1></nav>;
-    
-    console.log(user);
-    
 
     return (
         <nav className="navbar" ref={navRef}>

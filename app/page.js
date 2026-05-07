@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import About from "./components/HomePage/About/About";
 import Hero from "./components/HomePage/Hero/Hero";
+import Footer from "./components/HomePage/Footer/Footer";
 
 export default function Home() {
 
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="homepage">
       <Hero />
       <About />
+      <Footer />
     </main>
   );
 }

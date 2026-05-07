@@ -42,6 +42,11 @@ export default function Hero() {
                 opacity: 0,
                 y: -20
             }, '>')
+            .from('p', {
+                autoAlpha: 0,
+                opacity: 0,
+                y: -20
+            }, '<')
 
         // On scroll timeline
 
@@ -81,6 +86,13 @@ export default function Hero() {
               y: -100,
               opacity: 0
             }, '<')
+            .fromTo('p', {
+              y: 0,
+              opacity: 1
+            }, {
+              y: -100,
+              opacity: 0
+            }, '<')
 
         ScrollTrigger.refresh();
     }, {
@@ -92,6 +104,7 @@ export default function Hero() {
             <section ref={heroRef} className="hero" id="hero">
                 <div className="title">
                     <h1>Knotic</h1>
+                    <p>Foro para estudiantes.</p>
                     <a href="#about">Conoce más</a>
                 </div>
                 <Image

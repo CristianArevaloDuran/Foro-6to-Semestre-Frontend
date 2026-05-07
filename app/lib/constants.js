@@ -16,7 +16,7 @@ const sessionLinks = [
     }
 ]
 
-import {Email, UserId, Id, Visibility, VisibilityOff, CloseX, SuccessStar, ErrorStar, Loading} from "./icons.js";
+import {Email, UserId, Id, Visibility, VisibilityOff, CloseX, SuccessStar, ErrorStar, Loading, Plus} from "./icons.js";
 
 const ICONS = {
     VIEW: Visibility,
@@ -27,7 +27,8 @@ const ICONS = {
     CLOSEX: CloseX,
     SUCCESSSTAR: SuccessStar,
     ERRORSTAR: ErrorStar,
-    LOADING: Loading
+    LOADING: Loading,
+    PLUS: Plus
 }
 
 export { links, sessionLinks, ICONS };
