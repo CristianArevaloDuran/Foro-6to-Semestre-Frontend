@@ -1,35 +1,11 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import useForums from "../lib/hooks/useForums";
 import ForumsLoader from "./ForumsLoader";
 
 export default function Forums({API_URL}) {
     
-    const [forums, setForums] = useState();
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const getForums = async () => {
-            try {
-                const response = await fetch(`${API_URL}/forums`, {
-                    method: 'GET'
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-
-                    setForums(result.data);
-                    setLoading(false);
-                    
-                }
-            } catch (err) {
-                console.log(err);
-                
-            }
-        }
-        
-        getForums();
-    }, [])
+    const {forums, loading} = useForums(API_URL); 
 
     return (
         <section className="forums">

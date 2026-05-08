@@ -36,6 +36,7 @@ body {
 
 html {
   scroll-behavior: smooth !important;
+  data-scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
@@ -232,19 +233,6 @@ body::-webkit-scrollbar-thumb:hover {
         @apply text-(--text-highlight) underline;
       }
     }
-
-    .alert-block {
-      @apply fixed bg-black p-5 bottom-10 right-15 text-(--text-regular-white);
-      box-shadow: 0 0 10px 2px #ddfaa4; 
-
-      h1 {
-        @apply font-(family-name:--font-doto) font-black;
-      }
-
-      .closing-button {
-        @apply cursor-pointer absolute top-2 right-2;
-      }
-    }
   }
 
   /* Forums page */
@@ -256,7 +244,9 @@ body::-webkit-scrollbar-thumb:hover {
       @apply z-100 pt-[120px] pb-[50px] w-full min-h-dvh flex flex-col justify-center items-center gap-5;
 
       .forum {
-        @apply p-5 bg-(--color-foreground) border-5 border-black;
+        @apply p-5 bg-(--color-foreground) border-5 border-black transition duration-[.25s]
+        /* Hover effects */
+        hover:translate-y-[-10px];
         box-shadow: 0 0 10px 2px #ddfaa4;
 
         .title {
@@ -286,7 +276,7 @@ body::-webkit-scrollbar-thumb:hover {
   /* New Forum */
 
   .new-forum {
-    @apply fixed bottom-10 right-10 z-200;
+    @apply fixed bottom-10 left-10 z-200 flex flex-col items-start;
 
     .new-forum-button {
       @apply z-200 flex flex-row justify-center items-center bg-black py-3 px-4 cursor-pointer;
@@ -302,7 +292,33 @@ body::-webkit-scrollbar-thumb:hover {
     }
 
     .new-forum-form {
-      @apply z-200 bg-(--color-foreground) w-[100px] h-[100px]; 
+      @apply z-200 bg-(--color-foreground) p-10 border-5 border-black;
+      
+      form {
+        @apply flex flex-col justify-center items-center;
+      
+        .title {
+          h2 {
+            @apply font-(family-name:--font-quicksand) font-bold mb-5;
+          }
+        }
+
+        .input-wrap {
+          @apply flex flex-col w-full gap-2 mb-2;
+
+          label {
+            @apply font-(family-name:--font-quicksand) font-bold;
+          }
+
+          input {
+            @apply border-4 p-2 border-black;
+          }
+          
+          textarea {
+            @apply min-h-[50px] max-h-[150px] border-4 p-2 border-black;
+          }
+        }
+      }
     }
   }
 
@@ -364,6 +380,21 @@ body::-webkit-scrollbar-thumb:hover {
 
     .auth-button-success {
         @apply bg-background-success;
+    }
+
+    /* Alert Block */
+
+    .alert-block {
+      @apply z-200 fixed bg-black p-5 bottom-10 right-15 text-(--text-regular-white);
+      box-shadow: 0 0 10px 2px #ddfaa4; 
+
+      h1 {
+        @apply z-200 font-(family-name:--font-doto) font-black;
+      }
+
+      .closing-button {
+        @apply cursor-pointer absolute top-2 right-2;
+      }
     }
 
 }
