@@ -15,7 +15,7 @@ export default function AppClient({API_URL}) {
     return (
         <>
             <Forums API_URL={API_URL} />
-            <NewForum setMessage={setMessage} />
+            <NewForum setMessage={setMessage} API_URL={API_URL} />
             <AlertBlock message={message} title={'Error'} onClose={()=>setMessage('')} open={Boolean(message)} />
             <AnimatedBG />
             <Footer />

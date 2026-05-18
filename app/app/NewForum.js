@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
 import { ICONS } from "../lib/constants";
 import AuthButton from "../components/AuthButton/AuthButton";
 
@@ -24,7 +25,50 @@ export default function NewForum({API_URL, setMessage}) {
 
     const openForm = () => {
         setIsVisible((prev) => !prev);
-        setMessage('Hola')
+    }
+
+    // New forum handler
+
+    const [status, setStatus] = useState('idle');
+    const nameRef = useRef(null);
+    const descRef = useRef(null);
+
+    const handleNewForum = async (e) => {
+        e.preventDefault();
+
+        setStatus('loading');
+
+        const data = {
+            name: nameRef.current.value,
+            description: descRef.current.value
+        }
+
+        const token = Cookies.get('session');
+
+        try {
+            const response = await fetch(`${API_URL}/create-forum`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                nameRef.current.value = '';
+                descRef.current.value = '';
+                setTimeout(()=>{
+                    setStatus('idle');
+                    setIsVisible(false);
+                    window.location.reload();
+                }, 1000)
+            }
+        } catch(err) {
+            setMessage(err);
+        }
+        
     }
 
     return(
@@ -32,19 +76,19 @@ export default function NewForum({API_URL, setMessage}) {
             {
                 isVisible && (
                     <div className="new-forum-form">
-                        <form ref={formRef}>
+                        <form ref={formRef} onSubmit={(e)=>handleNewForum(e)}>
                             <div className="title">
                                 <h2>Crea un nuevo foro de discusión</h2>
                             </div>
                             <div className="input-wrap">
                                 <label htmlFor="name">Nombre</label>
-                                <input required type="text" id="name" placeholder="Nombre" />
+                                <input ref={nameRef} required type="text" id="name" placeholder="Nombre" />
                             </div>
                             <div className="input-wrap">
                                 <label htmlFor="description">Descripción</label>
-                                <textarea required type="text" id="description" placeholder="Nombre" />
+                                <textarea ref={descRef} required type="text" id="description" placeholder="Nombre" />
                             </div>
-                            <AuthButton content={'Crear'} status={'idle'}/>
+                            <AuthButton content={'Crear'} status={status}/>
                         </form>
                     </div> 
                 )

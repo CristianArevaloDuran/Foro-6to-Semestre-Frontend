@@ -27,7 +27,7 @@ export default function AuthButton({status, content}) {
         }
 
         if (status === "loading") {
-            gsap.to('button svg', {
+            gsap.to('.button-icon svg', {
                 rotate: 360,
                 duration: 1,
                 repeat: -1,
@@ -56,7 +56,7 @@ export default function AuthButton({status, content}) {
 
             {
                 status === 'loading' && (
-                    <span>
+                    <span className='button-icon'>
                         <ICONS.LOADING />
                     </span>
                 )
